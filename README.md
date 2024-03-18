@@ -13,8 +13,6 @@ The projects are developed using the following technologies:
 - **Typescript**: A superset of JavaScript that adds static types to the language.
 - **Node.js**: A JavaScript runtime that allows the execution of JavaScript code outside of a web browser.
 - **Express.js**: A web application framework for Node.js that provides a set of features for web and mobile applications.
-- **MongoDB**: A NoSQL database that uses a document-oriented data model.
-- **PostgreSQL**: A powerful, open-source object-relational database system.
 
 ## Recommended Development Tools
 
