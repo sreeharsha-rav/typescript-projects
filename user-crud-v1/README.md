@@ -13,10 +13,10 @@ This is a simple CRUD API that allows users to create, read, update and delete u
 
 ## Data Model
 
-- Envelope
-  - id: string
+- Users
+  - id: number
   - name: string
-  - amount: number
+  - email: string
 
 ## API Endpoints
 
