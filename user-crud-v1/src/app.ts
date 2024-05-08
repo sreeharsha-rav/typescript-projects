@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import { errorHandler, cors } from './middleware/errorHandler';
-// import envelopeRouter from './route/envelopeRoutes';
+import userRouter from './routes/user.routes';
 
 // Create an express application
 const app = express();
@@ -13,11 +13,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Use the cors middleware
 app.use(cors);
 
-// Use the envelope router
-// app.use('/api/envelopes', envelopeRouter);
+// Use the user router
+app.use('/users', userRouter);
 
 // Use the error handler middleware
 app.use(errorHandler);
 
-// Export the express application
-export default app;
+// start the server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
