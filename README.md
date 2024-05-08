@@ -5,6 +5,7 @@
 This repository contains a collection of personal projects that I have developed using Typescript for the backend. The projects are organized in different folders, each one containing a different project. The projects are:
 
 - [**`Personal Budget 1`**](https://github.com/sreeharsha-rav/typescript-projects/tree/main/personal-budget1): A simple personal budget application that allows the user to add, remove, and edit expenses and incomes. The application also shows the total balance and the balance of each category.
+- [**`User CRUD v1`**](): A simple CRUD API that allows creating, reading, updating, and deleting users with Postgres SQL database. The user data consists of a user's name and email.
 
 ## Technologies
 
@@ -13,6 +14,7 @@ The projects are developed using the following technologies:
 - **Typescript**: A superset of JavaScript that adds static types to the language.
 - **Node.js**: A JavaScript runtime that allows the execution of JavaScript code outside of a web browser.
 - **Express.js**: A web application framework for Node.js that provides a set of features for web and mobile applications.
+- **Postgres**: An open-source relational database management system that uses and extends the SQL language.
 
 ## Recommended Development Tools
 
