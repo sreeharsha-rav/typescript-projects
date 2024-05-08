@@ -69,7 +69,7 @@ This is a RESTful API that allows users create, read, update and delete their pe
     ```bash
     pnpm start
     ```
-4. Test the API endpoints using Postman. Use postman collection []()
+4. Test the API endpoints using Postman. Use postman collection [api-envelopes](./api-envelopes.postman_collection.json).
 
 ## Future Improvements
 

@@ -5,7 +5,7 @@
 This repository contains a collection of personal projects that I have developed using Typescript for the backend. The projects are organized in different folders, each one containing a different project. The projects are:
 
 - [**`Personal Budget 1`**](https://github.com/sreeharsha-rav/typescript-projects/tree/main/personal-budget1): A simple personal budget application that allows the user to add, remove, and edit expenses and incomes. The application also shows the total balance and the balance of each category.
-- [**`User CRUD v1`**](): A simple CRUD API that allows creating, reading, updating, and deleting users with Postgres SQL database. The user data consists of a user's name and email.
+- [**`User CRUD v1`**](./user-crud-v1): A simple CRUD API that allows creating, reading, updating, and deleting users with Postgres SQL database. The user data consists of a user's name and email.
 
 ## Technologies
 

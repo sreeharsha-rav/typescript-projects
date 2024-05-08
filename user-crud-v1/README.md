@@ -76,7 +76,7 @@ This is a simple CRUD API that allows users to create, read, update and delete u
     ```bash
     pnpm start
     ```
-7. Test the API endpoints using Postman. Use postman collection [user-crud-v1](./user-crud-v1.postman_collection.json)
+7. Test the API endpoints using Postman. Use postman collection [user-crud-v1](./user-crud-v1.postman_collection.json).
 
 ## Future Improvements
 
