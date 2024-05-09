@@ -48,7 +48,7 @@ This is a simple CRUD API that allows users to create, read, update and delete u
 
 - Node.js
 - TypeScript
-- Postgres
+- Postgres (with a database created)
 - Postman
 - pnpm (optional but recommended)
 
@@ -72,9 +72,13 @@ This is a simple CRUD API that allows users to create, read, update and delete u
     ```bash
     npx ts-node src/db/seed.ts
     ```
-6. Run the application
+6. Make sure the database is running postgres. If not, start the database server.
+7. Run the application
     ```bash
     pnpm start
     ```
-7. Use Postman to test the API endpoints [prisma-demo](./prisma-demo.postman_collection.json).
+8. Use Postman to test the API endpoints [prisma-demo](./prisma-demo.postman_collection.json).
 
+## Credits
+
+This project is inspired by the [Prisma Getting Started Guide](https://www.prisma.io/docs/getting-started/setup-prisma/start-from-scratch/relational-databases-typescript-postgresql).
