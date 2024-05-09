@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { EnvelopeRepository } from "../repository/envelope.repository";
+import { EnvelopeDAO } from "../dao/envelope.dao";
 
 /*
  * A controller to handle requests from the envelope routes and interact with the envelope repository
@@ -12,15 +12,15 @@ import { EnvelopeRepository } from "../repository/envelope.repository";
  */
 export class EnvelopeController {
 
-    private envelopeRepository: EnvelopeRepository;
+    private envelopeDAO: EnvelopeDAO;
 
     constructor() {
-        this.envelopeRepository = new EnvelopeRepository();
+        this.envelopeDAO = new EnvelopeDAO();
     }
 
     // A method to retrieve all envelopes requested from HTTP GET
     public getAllEnvelopes = async (req: Request, res: Response): Promise<void> => {
-        const result = await this.envelopeRepository.getEnvelopes();
+        const result = await this.envelopeDAO.getEnvelopes();
         if (result.length > 0) {
             res.json(result);
         } else {
@@ -31,7 +31,7 @@ export class EnvelopeController {
     // A method to retrieve a single envelope by id requested from HTTP GET
     public getEnvelopeById = async (req: Request, res: Response): Promise<void> => {
         const { id } = req.params;
-        const result = await this.envelopeRepository.getEnvelopeById(parseInt(id));
+        const result = await this.envelopeDAO.getEnvelopeById(parseInt(id));
         if (result !== undefined) {
             res.json(result);
         } else {
@@ -42,7 +42,7 @@ export class EnvelopeController {
     // A method to create a new envelope from request body requested from HTTP POST
     public createEnvelope = async (req: Request, res: Response): Promise<void> => {
         const { name, amount } = req.body;
-        const result = await this.envelopeRepository.createEnvelope(name, amount);
+        const result = await this.envelopeDAO.createEnvelope(name, amount);
         if (result.id) {
             res.status(201).json(result);
         } else {
@@ -54,7 +54,7 @@ export class EnvelopeController {
     public updateEnvelope = async (req: Request, res: Response): Promise<void> => {
         const { id } = req.params;
         const { name, amount } = req.body;
-        const result = await this.envelopeRepository.updateEnvelope(parseInt(id), name, amount);
+        const result = await this.envelopeDAO.updateEnvelope(parseInt(id), name, amount);
         if (result !== undefined) {
             res.json(result);
         } else {
@@ -65,7 +65,7 @@ export class EnvelopeController {
     // A method to delete an envelope by id from request url requested from HTTP DELETE
     public deleteEnvelope = async (req: Request, res: Response): Promise<void> => {
         const { id } = req.params;
-        const result = await this.envelopeRepository.deleteEnvelope(parseInt(id));
+        const result = await this.envelopeDAO.deleteEnvelope(parseInt(id));
         if (result !== undefined) {
             res.json(result);
         } else {
@@ -76,7 +76,7 @@ export class EnvelopeController {
     // A method to transfer an amount from one envelope to another from request body requested from HTTP POST
     public transferAmount = async (req: Request, res: Response): Promise<void> => {
         const { from, to, amount } = req.body;
-        const result = await this.envelopeRepository.transferAmount(from, to, amount);
+        const result = await this.envelopeDAO.transferAmount(from, to, amount);
         if (result !== undefined) {
             res.json(result);
         } else {

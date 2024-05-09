@@ -19,7 +19,7 @@ const pool = new Pool({
  * deleteEnvelope: A method to delete an envelope from the database
  * transferAmount: A method to transfer an amount from one envelope to another
  */
-export class EnvelopeRepository {
+export class EnvelopeDAO {
 
     // A method to retrieve all envelopes from the database
     public async getEnvelopes(): Promise<Envelope[]> {
@@ -83,11 +83,26 @@ export class EnvelopeRepository {
             const fromEnvelope = await this.getEnvelopeById(fromIndex);
             const toEnvelope = await this.getEnvelopeById(toIndex);
 
+
             if (fromEnvelope && toEnvelope) {
+                // Parse all the amounts to floating point numbers
+                const fromAmount = parseFloat(fromEnvelope.amount.toString());
+                const toAmount = parseFloat(toEnvelope.amount.toString());
+                const transferAmount = parseFloat(amount.toString());
+
                 // Check if the from envelope has enough amount to transfer
-                if (fromEnvelope.amount >= amount) {
-                    const updatedFromEnvelope = await this.updateEnvelope(fromIndex, fromEnvelope.name, fromEnvelope.amount - amount);
-                    const updatedToEnvelope = await this.updateEnvelope(toIndex, toEnvelope.name, toEnvelope.amount + amount);
+                if (fromAmount >= transferAmount) {
+                    // Log amount transfer
+                    // console.log(`Transferring $${transferAmount} from ${fromEnvelope.name} to ${toEnvelope.name}`);
+                    // console.log(`Before transfer: ${fromEnvelope.name} has $${fromAmount}, ${toEnvelope.name} has $${toAmount}`);
+
+                    fromEnvelope.amount = parseFloat((fromAmount - transferAmount).toFixed(2));
+                    toEnvelope.amount = parseFloat((toAmount + transferAmount).toFixed(2));
+
+                    // console.log(`After transfer: ${fromEnvelope.name} has $${fromEnvelope.amount}, ${toEnvelope.name} has $${toEnvelope.amount}`);
+
+                    const updatedFromEnvelope = await this.updateEnvelope(fromEnvelope.id, fromEnvelope.name, fromEnvelope.amount);
+                    const updatedToEnvelope = await this.updateEnvelope(toEnvelope.id, toEnvelope.name, toEnvelope.amount);
 
                     if (updatedFromEnvelope && updatedToEnvelope) {
                         await pool.query('COMMIT');
