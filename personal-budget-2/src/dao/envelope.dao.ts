@@ -1,13 +1,16 @@
 import { Envelope } from "../model/envelope.model";
+import dotenv from 'dotenv';
 
 // Set up the database connection using the pg library - use your own connection string
+dotenv.config();
+
 const { Pool } = require('pg');
 const pool = new Pool({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'postgres',
-  password: 'postgres',
-  port: 5432,
+    user: process.env.DB_USER,
+    host: process.env.DB_HOST,
+    database: process.env.DB_NAME,
+    password: process.env.DB_PASSWORD,
+    port: process.env.DB_PORT
 });
 
 /*
