@@ -7,7 +7,7 @@ This repository contains a collection of personal projects that I have developed
 - [**`Personal Budget 1`**](./personal-budget1): A simple personal budget application that allows the user to add, remove, and edit expenses and incomes. The application also shows the total balance and the balance of each category.
 - [**`User CRUD v1`**](./user-crud-v1): A simple CRUD API that allows creating, reading, updating, and deleting users with Postgres SQL database. The user data consists of a user's name and email.
 - [**`Prisma Postgres Demo`**](./prisma-postgres-demo): A simple CRUD API that allows creating, reading, updating, and deleting users with Prisma ORM and Postgres SQL database. The user data consists of a user's name and email.
-- [**`Personal Budget 2`**](./personal-budget-2): A simple personal budget application that allows the user to add, remove, and edit expenses and incomes. The application also shows the total balance and the balance of each category. This version of the application uses Prisma ORM and Postgres SQL database.
+- [**`Personal Budget 2`**](./personal-budget-2): A simple personal budget application that allows the user to add, remove, and edit expenses and incomes. The application also shows the total balance and the balance of each category. This version of the application uses node-postgres `pg` and Postgres SQL database.
 
 ## Technologies
 
