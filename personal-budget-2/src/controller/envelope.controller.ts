@@ -1,8 +1,9 @@
 import { Request, Response } from "express";
 import { EnvelopeDAO } from "../dao/envelope.dao";
+import { TransferService } from "../service/transfer.service";
 
 /*
- * A controller to handle requests from the envelope routes and interact with the envelope repository
+ * A controller to handle requests from the envelope routes and interact with the envelope DAO
  * getAllEnvelopes: A method to retrieve all envelopes requested from HTTP GET
  * getEnvelopeById: A method to retrieve a single envelope by id requested from HTTP GET
  * createEnvelope: A method to create a new envelope from request body requested from HTTP POST
@@ -14,8 +15,11 @@ export class EnvelopeController {
 
     private envelopeDAO: EnvelopeDAO;
 
+    private transferService: TransferService;
+
     constructor() {
         this.envelopeDAO = new EnvelopeDAO();
+        this.transferService = new TransferService();
     }
 
     // A method to retrieve all envelopes requested from HTTP GET
@@ -75,12 +79,12 @@ export class EnvelopeController {
 
     // A method to transfer an amount from one envelope to another from request body requested from HTTP POST
     public transferAmount = async (req: Request, res: Response): Promise<void> => {
-        const { from, to, amount } = req.body;
-        const result = await this.envelopeDAO.transferAmount(from, to, amount);
-        if (result !== undefined) {
-            res.json(result);
+        const { fromEnvelopeId, toEnvelopeId, amount } = req.body;
+        const result = await this.transferService.transferAmount(fromEnvelopeId, toEnvelopeId, amount);
+        if (result.id) {
+            res.status(201).json(result);
         } else {
-            res.status(400).json({ error: 'Bad Request. Invalid transfer' });
+            res.status(400).json({ error: 'Bad Request. Amount not transferred' });
         }
     }
 

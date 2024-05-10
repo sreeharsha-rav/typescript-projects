@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import { errorHandler, cors } from './middleware/errorHandler';
 import envelopeRouter from './route/envelope.routes';
+import transactionRouter from './route/transaction.route';
 
 // Create an express application
 const app = express();
@@ -12,8 +13,9 @@ app.use(bodyParser.json());
 // Use the cors middleware
 app.use(cors);
 
-// Use the envelope router
+// Use the envelope and transaction routers
 app.use('/api/envelopes', envelopeRouter);
+app.use('/api/transactions', transactionRouter);
 
 // Use the error handler middleware
 app.use(errorHandler);
