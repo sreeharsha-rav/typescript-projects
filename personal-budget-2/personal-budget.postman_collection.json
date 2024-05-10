@@ -1,0 +1,109 @@
+{
+	"info": {
+		"_postman_id": "7c29f8a2-3c6c-47a4-a8b3-aada67493bb3",
+		"name": "personal-budget",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "28103794"
+	},
+	"item": [
+		{
+			"name": "get all envelopes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3000/api/envelopes/"
+			},
+			"response": []
+		},
+		{
+			"name": "get envelope by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3000/api/envelopes/2"
+			},
+			"response": []
+		},
+		{
+			"name": "create new envelope",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Gym\",\r\n    \"amount\": 40.00\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/api/envelopes/"
+			},
+			"response": []
+		},
+		{
+			"name": "update envelope by id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Groceries\",\r\n    \"amount\": 200.00\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/api/envelopes/1"
+			},
+			"response": []
+		},
+		{
+			"name": "transfer amount",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fromEnvelopeId\": 3,\r\n    \"toEnvelopeId\": 9,\r\n    \"amount\": 10.00\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/api/envelopes/transfer"
+			},
+			"response": []
+		},
+		{
+			"name": "delete an envelope",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:3000/api/envelopes/8"
+			},
+			"response": []
+		},
+		{
+			"name": "get all transactions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3000/api/transactions/"
+			},
+			"response": []
+		},
+		{
+			"name": "get transaction by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3000/api/transactions/2"
+			},
+			"response": []
+		}
+	]
+}
