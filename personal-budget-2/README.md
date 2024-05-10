@@ -115,10 +115,12 @@ This is a RESTful API that allows users create, read, update and delete their pe
     - [`schema`](./src/db/schema.sql)
     - [`seed data`](./src/db/data.sql)
     
+
     ```psql
     psql -U <your_postgres_username> -d <your_database_name> -a -f src/db/schema.sql
     psql -U <your_postgres_username> -d <your_database_name> -a -f src/db/data.sql
     ```
+    
 5. Run the server
     ```bash
     pnpm start
@@ -128,6 +130,7 @@ This is a RESTful API that allows users create, read, update and delete their pe
 ## Future Improvements
 
 - Add front-end to interact with the API
+- Document the API using Swagger
 - Deploy to Render
 
 ## Credits
