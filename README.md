@@ -8,6 +8,7 @@ This repository contains a collection of personal projects that I have developed
 - [**`User CRUD v1`**](./user-crud-v1): A simple CRUD API that allows creating, reading, updating, and deleting users with Postgres SQL database. The user data consists of a user's name and email.
 - [**`Prisma Postgres Demo`**](./prisma-postgres-demo): A simple CRUD API that allows creating, reading, updating, and deleting users with Prisma ORM and Postgres SQL database. The user data consists of a user's name and email.
 - [**`Personal Budget 2`**](./personal-budget-2): A simple personal budget application that allows the user to add, remove, and edit expenses and incomes. The application also shows the total balance and the balance of each category. This version of the application uses node-postgres `pg` and Postgres SQL database.
+- [**`Swagger Demo`**](./swagger-demo): A demo project to use of Swagger with Express.js along with TypeScript.
 
 ## Technologies
 
@@ -18,6 +19,7 @@ The projects are developed using the following technologies:
 - **Express.js**: A web application framework for Node.js that provides a set of features for web and mobile applications.
 - **Postgres**: An open-source relational database management system that uses and extends the SQL language.
 - **Prisma**: A modern database toolkit that simplifies database access for Node.js and TypeScript applications.
+- **Swagger**: An open-source software framework backed by a large ecosystem of tools that helps developers design, build, document, and consume RESTful web services.
 
 ## Recommended Development Tools
 
