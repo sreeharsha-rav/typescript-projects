@@ -21,9 +21,11 @@
 	"dependencies": {
 		"@fastify/jwt": "^8.0.1",
 		"@prisma/client": "5.14.0",
+		"bcrypt": "^5.1.1",
 		"fastify": "^4.27.0"
 	},
 	"devDependencies": {
+		"@types/bcrypt": "^5.0.2",
 		"@types/node": "^20.14.0",
 		"nodemon": "^3.1.2",
 		"prisma": "^5.14.0",
