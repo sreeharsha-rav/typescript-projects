@@ -9,6 +9,7 @@ This repository contains a collection of personal projects that I have developed
 - [**`Prisma Postgres Demo`**](./prisma-postgres-demo): A simple CRUD API that allows creating, reading, updating, and deleting users with Prisma ORM and Postgres SQL database. The user data consists of a user's name and email.
 - [**`Personal Budget 2`**](./personal-budget-2): A simple personal budget application that allows the user to add, remove, and edit expenses and incomes. The application also shows the total balance and the balance of each category. This version of the application uses node-postgres `pg` and Postgres SQL database.
 - [**`Swagger Demo`**](./swagger-demo): A demo project to use of Swagger with Express.js along with TypeScript.
+- [**`Photo Caption`**](./photo-caption): A backend for a platform where users can participate in a photo caption contest. The server hosts few images and provides endpoint to authenticate and authorize users, upload images, and submit captions for the images.
 
 ## Technologies
 
@@ -16,7 +17,9 @@ The projects are developed using the following technologies:
 
 - **Typescript**: A superset of JavaScript that adds static types to the language.
 - **Node.js**: A JavaScript runtime that allows the execution of JavaScript code outside of a web browser.
+- **Nodemon**: A utility that monitors for any changes in the source code of a Node.js application and automatically restarts the server.
 - **Express.js**: A web application framework for Node.js that provides a set of features for web and mobile applications.
+- **Fastify**: A web framework highly focused on providing the best developer experience with the least overhead and a powerful plugin architecture.
 - **Postgres**: An open-source relational database management system that uses and extends the SQL language.
 - **Prisma**: A modern database toolkit that simplifies database access for Node.js and TypeScript applications.
 - **Swagger**: An open-source software framework backed by a large ecosystem of tools that helps developers design, build, document, and consume RESTful web services.
