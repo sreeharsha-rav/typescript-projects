@@ -30,6 +30,8 @@ This is a simple demo of a JWT authentication service using Fastify, Prisma, Pos
         ```
 4. Set up the database:
     - Generate the Prisma client: `pnpm prisma generate`
+    - Run the migrations: `pnpm prisma migrate dev --name init`
+    - Seed the database: `pnpm seed`
 
 ### Running the Server
 
