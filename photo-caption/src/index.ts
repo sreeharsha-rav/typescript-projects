@@ -25,7 +25,7 @@ app.get("/", async (request, reply) => {
 // Start app
 const start = async () => {
   try {
-    await app.listen(3000);
+    await app.listen({ port: 3000 });
     app.log.info(`Serever running at http://localhost:3000`);
   } catch (err) {
     app.log.error(err);
