@@ -1,36 +1,34 @@
 import fastify from "fastify";
 import fastifyJwt from "@fastify/jwt";
-import { PrismaClient } from "@prisma/client";
 
-const server = fastify({ logger: true });
-const prisma = new PrismaClient();
+const app = fastify({ logger: true });
 
 // Register the JWT plugin
-server.register(fastifyJwt, {
-  secret: "supersecret"
+app.register(fastifyJwt, {
+  secret: process.env.JWT_SECRET || "supersecret",
 });
-
-// Register authentication middleware
-import authMiddleware from "./middleware/auth";
-server.register(authMiddleware);
 
 // Register route handlers
 import authRoutes from "./routes/auth";
+import userRoutes from "./routes/user";
+import imageRoutes from "./routes/image";
 
-server.register(authRoutes);
+app.register(authRoutes);
+app.register(userRoutes);
+app.register(imageRoutes);
 
-// Demo route
-server.get("/", async (request, reply) => {
-  return "Hello, world!";
+// Health check route
+app.get("/", async (request, reply) => {
+  return { status: "ok" };
 });
 
-// Start server
+// Start app
 const start = async () => {
   try {
-    await server.listen(3000);
-    server.log.info(`Serever running at http://localhost:3000`);
+    await app.listen(3000);
+    app.log.info(`Serever running at http://localhost:3000`);
   } catch (err) {
-    server.log.error(err);
+    app.log.error(err);
     process.exit(1);
   }
 };
