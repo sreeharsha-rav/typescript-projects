@@ -4,15 +4,33 @@ import { FastifyReply, FastifyRequest } from "fastify";
 import prismaClient from "../../utils/prisma";
 import bcrypt from "bcrypt";
 
+// In memory store to store the refresh tokens
+const validTokens = new Set<string>();
+
 // Get all users
 export const getUsers = async (request: FastifyRequest, reply: FastifyReply) => {
-    const users = await prismaClient.user.findMany({
+    try {
+        // Check if token is valid
+        if (!request.headers.authorization) {
+            return reply.status(400).send({ message: "Unauthorized. Token not provided" });
+        }
+        const token = request.headers.authorization.replace("Bearer ", "");  // Extract the token from the header
+        if (!validTokens.has(token)) {
+            return reply.status(400).send({ message: "Unauthorized. Invalid token." });
+        }
+
+        await request.jwtVerify();  // Verify the JWT token
+
+        const users = await prismaClient.user.findMany({
         select: {
             id: true,
             username: true,
-        },
-    });
-    return reply.status(200).send(users);
+            },
+        });
+        return reply.status(200).send(users);
+    } catch (err) {
+        return reply.status(401).send({ error: err, message: "Unauthorized" });
+    }
 };
 
 // Register/Create a new user
@@ -71,10 +89,32 @@ export const loginUser = async (request: FastifyRequest, reply: FastifyReply) =>
     };
     const token = request.server.jwt.sign(payload);
 
+    validTokens.add(token);  // Store the token in the in-memory store
+
     return reply.status(200).send({ token });
 };
 
 // Logout a user
 export const logoutUser = async (request: FastifyRequest, reply: FastifyReply) => {
+    const token = request.headers.authorization?.replace("Bearer ", "");
+
+    if (!token) {
+        return reply.status(400).send({ message: "Logout failed! Token not provided" });
+    }
+
+    // Check if the token is valid
+    if (!validTokens.has(token)) {
+        return reply.status(400).send({ message: "Logout failed! Invalid token" });
+    }
+
+    // Remove the token from the in-memory store
+    validTokens.delete(token);
+
+    // Check if the token is removed
+    if (validTokens.has(token)) {
+        return reply.status(500).send({ message: "Failed to logout user!" });
+    }
+
+    
     return reply.status(200).send({ message: "User logged out successfully" });
 };

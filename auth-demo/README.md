@@ -62,6 +62,7 @@ This is a simple demo of a JWT authentication service using Fastify, Prisma, Pos
 ## Futher Improvements
 
 - Add validation for user input with `zod`
+- Implement user session with tokens stored
 - Modify encryption method to use a more secure algorithm
 
 ## Credits
