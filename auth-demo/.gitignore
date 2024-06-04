@@ -1,0 +1,20 @@
+# ignore node modules
+node_modules
+
+# ignore build files
+build
+
+# ignore coverage reports
+coverage
+
+# ignore .env files
+.env
+
+# ignore .DS_Store files
+.DS_Store
+
+# ignore .vscode files
+.vscode
+
+# ignore .idea files
+.idea
