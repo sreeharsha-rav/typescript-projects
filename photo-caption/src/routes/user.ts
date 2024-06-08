@@ -10,12 +10,13 @@ export default async function userRoutes(fastify: FastifyInstance) {
     fastify.get('/users', { preHandler: verifyJWT }, async (request: FastifyRequest, reply: FastifyReply) => {
 
         const users = await prisma.user.findMany();
-        return users.map(user => {
-        return {
-            id: user.id,
-            username: user.username,
+        return { users: users.map(user => {
+            return {
+                id: user.id,
+                username: user.username,
+            };
+            }) 
         };
-        });
     });
 
 }

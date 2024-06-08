@@ -12,10 +12,12 @@ app.register(fastifyJwt, {
 import authRoutes from "./routes/auth";
 import userRoutes from "./routes/user";
 import imageRoutes from "./routes/image";
+import captionRoutes from "./routes/caption";
 
 app.register(authRoutes);
 app.register(userRoutes);
 app.register(imageRoutes);
+app.register(captionRoutes);
 
 // Health check route
 app.get("/", async (request, reply) => {

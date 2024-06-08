@@ -24,7 +24,8 @@
 		"@prisma/client": "5.14.0",
 		"bcrypt": "^5.1.1",
 		"fastify": "^4.27.0",
-		"jsonwebtoken": "^9.0.2"
+		"jsonwebtoken": "^9.0.2",
+		"node-cache": "^5.1.2"
 	},
 	"devDependencies": {
 		"@types/bcrypt": "^5.0.2",

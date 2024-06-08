@@ -61,14 +61,22 @@ This is a backend for a platform where users can participate in a photo caption 
 - `POST /auth/register` - Register a new user
 - `POST /auth/login` - Login a user
 
+### Users
+
+- `GET /users/` - Get all users
+
 ### Images
 
 - `GET /images/` - Get all images
+- `GET /images/:id` - Get an image by ID, returns the image and its captions
+- `POST /images/` - Upload a new image (requires authentication)
 
 ### Captions
 
-- `GET /captions/` - Get all captions (requires authentication)
-- `POST /captions/` - Submit a caption for an image (requires authentication)
+- `GET /captions/` - Get all captions
+- `GET /captions/user/:username` - Get all captions by a user's name
+- `GET /captions/image/:id` - Get all captions for an image
+- `POST /captions/image/:id` - Submit a new caption for an image (requires authentication)
 
 ## Database Schema
 
