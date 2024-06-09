@@ -1,0 +1,145 @@
+{
+	"info": {
+		"_postman_id": "9fd72ec8-2dac-461d-b43d-47f751d709d0",
+		"name": "photo-caption-contest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "28103794"
+	},
+	"item": [
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"charlie\",\r\n    \"password\": \"password789\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/login"
+			},
+			"response": []
+		},
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"charlie\",\r\n    \"password\": \"password789\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/register"
+			},
+			"response": []
+		},
+		{
+			"name": "get all users",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwidXNlcm5hbWUiOiJjaGFybGllIiwiaWF0IjoxNzE3ODA2ODgwfQ.tHmkYymbq42QGmA2Nb3mU8IS4Zt1KmD4JDzheX0ltao"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3000/users"
+			},
+			"response": []
+		},
+		{
+			"name": "get all images",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3000/images"
+			},
+			"response": []
+		},
+		{
+			"name": "get image by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3000/images/4"
+			},
+			"response": []
+		},
+		{
+			"name": "post an image",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwidXNlcm5hbWUiOiJjaGFybGllIiwiaWF0IjoxNzE3ODA2ODgwfQ.tHmkYymbq42QGmA2Nb3mU8IS4Zt1KmD4JDzheX0ltao"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"url\": \"https://picsum.photos/id/57/500\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/images"
+			},
+			"response": []
+		},
+		{
+			"name": "get all captions from username",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3000/captions/user/charlie"
+			},
+			"response": []
+		},
+		{
+			"name": "get all captions for image",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3000/captions/image/3"
+			},
+			"response": []
+		},
+		{
+			"name": "post a caption for an image",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwidXNlcm5hbWUiOiJjaGFybGllIiwiaWF0IjoxNzE3ODA2ODgwfQ.tHmkYymbq42QGmA2Nb3mU8IS4Zt1KmD4JDzheX0ltao"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"text\": \"A rock on a beach\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/captions/image/4"
+			},
+			"response": []
+		}
+	]
+}

@@ -9,7 +9,7 @@ This repository contains a collection of personal projects that I have developed
 - [**`Prisma Postgres Demo`**](./prisma-postgres-demo): A simple CRUD API that allows creating, reading, updating, and deleting users with Prisma ORM and Postgres SQL database. The user data consists of a user's name and email.
 - [**`Personal Budget 2`**](./personal-budget-2): A simple personal budget application that allows the user to add, remove, and edit expenses and incomes. The application also shows the total balance and the balance of each category. This version of the application uses node-postgres `pg` and Postgres SQL database.
 - [**`Swagger Demo`**](./swagger-demo): A demo project to use of Swagger with Express.js along with TypeScript.
-- [**`Authentation Demo`**](./authen-demo): A simple authentication API that allows users to register, login, and logout. The API uses JWT for authentication and authorization.
+- [**`Authentation Demo`**](./auth-demo): A simple authentication API that allows users to register, login, and logout. The API uses JWT for authentication and authorization.
 - [**`Photo Caption`**](./photo-caption): A backend for a platform where users can participate in a photo caption contest. The server hosts few images and provides endpoint to authenticate and authorize users, upload images, and submit captions for the images.
 
 ## Technologies

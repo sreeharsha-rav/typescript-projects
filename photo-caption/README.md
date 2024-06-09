@@ -1,6 +1,6 @@
 # Photo Caption Contest
 
-This is a backend for a platform where users can participate in a photo caption contest. The server hosts few images and provides endpoint to authenticate and authorize users, upload images, and submit captions for the images.
+This is a backend for a platform where users can participate in a photo caption contest. The server hosts few images and provides endpoint to authenticate and authorize users, upload images, and submit captions for the images. Some responses are cached to improve performance.
 
 ## Table of Contents
 
@@ -22,7 +22,7 @@ This is a backend for a platform where users can participate in a photo caption 
 - PostgreSQL
 - Prisma ORM
 - JWT
-- Localized Caching
+- Node-Cache
 
 ## Getting Started
 
@@ -52,7 +52,7 @@ This is a backend for a platform where users can participate in a photo caption 
 
 1. Run the server: `pnpm dev`
 2. Open Postman and import the collection from the `postman` directory
-3. Test the API endpoints using the Postman collection at `http://localhost:3000`
+3. Test the API endpoints using the Postman collection `photo-caption-contest.postman_collection.json` at `http://localhost:3000`
 
 ## API Endpoints
 
@@ -68,14 +68,14 @@ This is a backend for a platform where users can participate in a photo caption 
 ### Images
 
 - `GET /images/` - Get all images
-- `GET /images/:id` - Get an image by ID, returns the image and its captions
+- `GET /images/:id` - Get an image by ID, returns the image and its captions (cached)
 - `POST /images/` - Upload a new image (requires authentication)
 
 ### Captions
 
 - `GET /captions/` - Get all captions
 - `GET /captions/user/:username` - Get all captions by a user's name
-- `GET /captions/image/:id` - Get all captions for an image
+- `GET /captions/image/:id` - Get all captions for an image (cached)
 - `POST /captions/image/:id` - Submit a new caption for an image (requires authentication)
 
 ## Database Schema
@@ -102,6 +102,13 @@ This is a backend for a platform where users can participate in a photo caption 
 | imageId   | number |
 
 ## Future Improvements
+
+- Add more features to the platform, such as voting for captions
+- Add more tests to improve code coverage
+- Improve file structure and organization
+- More robust caching mechanism
+- Add documentation for the API endpoints using Swagger
+- Make into a docker container
 
 ## Credits
 

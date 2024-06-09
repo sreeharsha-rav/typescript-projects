@@ -41,6 +41,12 @@ This is a simple demo of a JWT authentication service using Fastify, Prisma, Pos
 
 ## API Endpoints
 
+- POST `/register`: Register a new user
+- POST `/login`: Login an existing user
+- POST `/logout`: Logout the current user, requires user to be logged in / have a valid token
+- GET `/users`: Get all users, requires authentication
+- GET `/healthcheck`: Check if the server is running
+
 ## Database Schema
 
 ### User
