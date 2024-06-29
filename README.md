@@ -11,7 +11,7 @@ This repository contains a collection of personal projects that I have developed
 - [**`Swagger Demo`**](./swagger-demo): A demo project to use of Swagger with Express.js along with TypeScript.
 - [**`Authentation Demo`**](./auth-demo): A simple authentication API that allows users to register, login, and logout. The API uses JWT for authentication and authorization.
 - [**`Photo Caption`**](./photo-caption): A backend for a platform where users can participate in a photo caption contest. The server hosts few images and provides endpoint to authenticate and authorize users, upload images, and submit captions for the images.
-- [**`Next.js REST API`**](./next-rest-api): A simple REST API built with Next.js.
+- [**`Posts API`**](./posts-api): A application to demonstrate CRUD functionality along with REST API in Next.js. The API allows users to create, read, update, and delete posts.
 
 ## Technologies
 

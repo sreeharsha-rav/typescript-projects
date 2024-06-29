@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-type Blog = {
+type Post = {
     userId: number;
     id: number;
     title: string;
@@ -52,11 +52,11 @@ const Blogs = async() => {
 
             <h2 className="text-2xl font-semibold mt-5">Posts</h2>
             <ul>
-                {blogs.map((blog: Blog) => (
-                    <Link key={blog.id} href={`/blog/${blog.id}`}>
+                {blogs.map((post: Post) => (
+                    <Link key={post.id} href={`/Post/${post.id}`}>
                         <li className="border p-4 rounded-md my-2 cursor-pointer hover:bg-gray-100 hover:text-blue-500">
-                            <h4 className="text-lg font-medium hover:underline">{blog.title}</h4>
-                            <p>{blog.body}</p>
+                            <h4 className="text-lg font-medium hover:underline">{post.title}</h4>
+                            <p>{post.body}</p>
                         </li>
                     </Link>
                 ))}
