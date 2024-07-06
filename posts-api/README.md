@@ -40,3 +40,15 @@ A application to demonstrate CRUD functionality along with REST API in Next.js. 
         }
         ```
 - `DELETE /api/posts/:id` - Delete a post by id
+
+## API Testing
+
+- Postman Collection: [Posts API](https://elements.getpostman.com/redirect?entityId=28103794-874344a9-7a75-41b4-82b1-2da240875359&entityType=collection)
+
+## Current TODOs
+
+- Fix prisma connection issue with MongoDB for POST, PUT, DELETE requests
+- Add UI to interact with the API (CRUD functionality)
+- Add caching to improve performance
+- Add cookies
+- Implement Stream API
