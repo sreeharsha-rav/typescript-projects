@@ -18,9 +18,9 @@ MealMap allows users to search, filter, and discover a wide variety of recipes. 
 
 - **Frontend:** TypeScript, HTML, CSS, Bootstrap
 - **Backend:** Fastify, TypeScript
-- **Database:** MongoDB
-- **ORM:** Prisma
-- **Others:** Node.js, npm
+- **Database:** PostgreSQL, MongoDB
+- **ORM:** Prisma, Mongoose
+- **Others:** Node.js, pnpm, Docker, GitHub Actions
 
 ## Development
 
@@ -29,7 +29,7 @@ MealMap allows users to search, filter, and discover a wide variety of recipes. 
 v0.1 - set up the project structure and basic recipe CRUD operations
 
 - set up the project structure
-- create the data model
+- create the data model in PostgreSQL with Prisma
 - implement recipe CRUD operations
 - write unit tests
 - implement CI/CD pipeline
@@ -43,7 +43,7 @@ v0.2 - implement search and filter functionality
 
 v0.3 - add feaures to recipes
 
-- add ingredients and instructions to recipes
+- add ingredients and instructions to recipes in MongoDB with Mongoose
 - update search and filter functionality
 - write integration tests
 - update CI/CD pipeline
