@@ -13,7 +13,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "fastify": "^4.28.1"
+    "fastify": "^4.28.1",
+    "@fastify/type-provider-typebox": "^4.0.0"
   },
   "devDependencies": {
     "@types/node": "20.14.10",
