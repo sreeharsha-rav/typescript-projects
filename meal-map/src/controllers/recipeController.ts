@@ -12,6 +12,20 @@ import { parse } from 'path';
     * deleteRecipe - delete a recipe by ID
 */
 class RecipeController {
+    private static instance: RecipeController;  // Singleton instance
+
+    private constructor() {}
+
+    // Get the singleton instance of the controller
+    public static getInstance(): RecipeController {
+        if (!RecipeController.instance) {
+            RecipeController.instance = new RecipeController();
+        }
+        return RecipeController.instance;
+    }
+
+    /* Request and response handling for recipe operations */
+
     async getAllRecipes(request: FastifyRequest, reply: FastifyReply) {
         const recipes = await recipeService.getAllRecipes();
         reply.send(recipes);
@@ -78,4 +92,4 @@ class RecipeController {
     }
 }
 
-export const recipeController = new RecipeController();
+export const recipeController = RecipeController.getInstance();

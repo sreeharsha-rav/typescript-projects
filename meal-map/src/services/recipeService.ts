@@ -2,7 +2,7 @@ import { Recipe } from '../models/recipe';
 import { recipeRepository } from '../repositories/recipeRepository';
 
 /*
- * Service for recipes to handle logic
+ * Service for recipes to handle logic for recipe operations
     * getAllRecipes - get all recipes
     * getRecipeById - get a single recipe by ID
     * createRecipe - create a new recipe
@@ -10,25 +10,39 @@ import { recipeRepository } from '../repositories/recipeRepository';
     * deleteRecipe - delete a recipe by ID
 */
 class RecipeService {
-  async getAllRecipes(): Promise<Recipe[]> {
-    return recipeRepository.findAll();
-  }
+    private static instance: RecipeService;  // Singleton instance
 
-  async getRecipeById(id: number): Promise<Recipe | null> {
-    return recipeRepository.findById(id);
-  }
+    private constructor() {}
 
-  async createRecipe(recipe: Omit<Recipe, 'id'>): Promise<Recipe> {
-    return recipeRepository.create(recipe);
-  }
+    // Get the singleton instance of the service
+    public static getInstance(): RecipeService {
+        if (!RecipeService.instance) {
+            RecipeService.instance = new RecipeService();
+        }
+        return RecipeService.instance;
+    }
 
-  async updateRecipe(id: number, recipe: Partial<Recipe>): Promise<Recipe | null> {
-    return recipeRepository.update(id, recipe);
-  }
+    /* Logic for handling recipe operations */
 
-  async deleteRecipe(id: number): Promise<boolean> {
-    return recipeRepository.delete(id);
-  }
+    async getAllRecipes(): Promise<Recipe[]> {
+        return recipeRepository.findAll();
+    }
+
+    async getRecipeById(id: number): Promise<Recipe | null> {
+        return recipeRepository.findById(id);
+    }
+
+    async createRecipe(recipe: Omit<Recipe, 'id'>): Promise<Recipe> {
+        return recipeRepository.create(recipe);
+    }
+
+    async updateRecipe(id: number, recipe: Partial<Recipe>): Promise<Recipe | null> {
+        return recipeRepository.update(id, recipe);
+    }
+
+    async deleteRecipe(id: number): Promise<boolean> {
+        return recipeRepository.delete(id);
+    }
 }
 
-export const recipeService = new RecipeService();
+export const recipeService = RecipeService.getInstance();

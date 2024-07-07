@@ -2,6 +2,7 @@ import { Recipe } from "../models/recipe";
 
 /*
  * Repository for recipes to interact with recipe data
+    * Singleton instance
     * findAll - get all recipes
     * findById - get a single recipe by ID
     * create - create a new recipe
@@ -9,9 +10,12 @@ import { Recipe } from "../models/recipe";
     * delete - delete a recipe by ID
 */
 class RecipeRepository {
+    private static instance: RecipeRepository;  // Singleton instance
     private recipes: Recipe[] = [];
 
-    constructor() {
+    private constructor() {
+
+        // Sample recipe data
         this.recipes = [
             {
                 id: 1,
@@ -44,6 +48,14 @@ class RecipeRepository {
                 imageURL: "https://example.com/images/chicken-tikka-masala.jpg"
             }
         ];
+    }
+
+    // Get the singleton instance of the repository
+    public static getInstance(): RecipeRepository {
+        if (!RecipeRepository.instance) {
+            RecipeRepository.instance = new RecipeRepository();
+        }
+        return RecipeRepository.instance;
     }
 
     async findAll(): Promise<Recipe[]> {
@@ -81,4 +93,4 @@ class RecipeRepository {
     }
 }
 
-export const recipeRepository = new RecipeRepository();
+export const recipeRepository = RecipeRepository.getInstance();
