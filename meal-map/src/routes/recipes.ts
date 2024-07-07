@@ -1,9 +1,6 @@
 import { FastifyInstance, FastifyRequest, FastifyReply } from 'fastify';
 import { Recipe } from '../types/recipe';
-
-// Create an array to store recipes
-let recipes: Recipe[] = [];
-let nextId = 1;
+import recipeDbClient from '../db';
 
 /*
  * Routes for recipes
@@ -16,55 +13,52 @@ let nextId = 1;
 export default async function (fastify: FastifyInstance) {
     // Get all recipes
     fastify.get('/', async (request: FastifyRequest, reply: FastifyReply) => {
-        return recipes;
+        const recipes = recipeDbClient.getAllRecipes();
+        if (recipes.length === 0) {
+            reply.code(404).send({ error: 'No recipes found' });
+        } else {
+            reply.send({ message: 'Recipes found', recipes });
+        }
     });
 
     // Get a single recipe
     fastify.get('/:id', async (request: FastifyRequest<{ Params: { id: string } }>, reply: FastifyReply) => {
         const id = parseInt(request.params.id, 10);
-        const recipe = recipes.find(r => r.id === id);
+        const recipe = recipeDbClient.getRecipeById(id);
         if (!recipe) {
             reply.code(404).send({ error: 'Recipe not found' });
         } else {
-            return recipe;
+            reply.send({ message: 'Recipe found', recipe });
         }
     });
 
     // Create a new recipe
     fastify.post('/', async (request: FastifyRequest<{ Body: Omit<Recipe, 'id'> }>, reply: FastifyReply) => {
         const { name, description, imageURL } = request.body;
-        const newRecipe = {
-            id: nextId++,
-            name,
-            description,
-            imageURL
-        };
-        recipes.push(newRecipe);
-        reply.code(201).send(newRecipe);
+        const newRecipe: Recipe = recipeDbClient.addRecipe({ name, description, imageURL });
+        reply.code(201).send({ message: 'Recipe created successfully', recipe: newRecipe });
     });
 
     // Update a recipe
     fastify.put('/:id', async (request: FastifyRequest<{ Params: { id: string }, Body: Omit<Recipe, 'id'> }>, reply: FastifyReply) => {
         const id = parseInt(request.params.id, 10);
         const { name, description, imageURL } = request.body;
-        const recipeIndex = recipes.findIndex(u => u.id === id);
-        if (recipeIndex === -1) {
+        const updatedRecipe = recipeDbClient.updateRecipe(id, { name, description, imageURL });
+        if (!updatedRecipe) {
             reply.code(404).send({ error: 'Recipe not found' });
         } else {
-            recipes[recipeIndex] = { id, name, description, imageURL };
-            return { message: 'Recipe updated', recipe: recipes[recipeIndex] };
+            reply.send({ message: 'Recipe updated successfully', recipe: updatedRecipe });
         }
     });
 
     // Delete a recipe
     fastify.delete('/:id', async (request: FastifyRequest<{ Params: { id: string } }>, reply: FastifyReply) => {
         const id = parseInt(request.params.id, 10);
-        const recipeIndex = recipes.findIndex(r => r.id === id);
-        if (recipeIndex === -1) {
+        const isDeleted = recipeDbClient.deleteRecipe(id);
+        if (!isDeleted) {
             reply.code(404).send({ error: 'Recipe not found' });
         } else {
-            recipes = recipes.filter(r => r.id !== id);
-            return { message: 'Recipe deleted' };
+            reply.code(204).send({ message: 'Recipe deleted successfully' });
         }
     });
 }

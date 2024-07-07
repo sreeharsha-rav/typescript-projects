@@ -54,26 +54,40 @@ class RecipeDatabase {
         return this.recipes.find(recipe => recipe.id === id);
     }
 
-    addRecipe(recipe: Recipe): void {
+    addRecipe(newRecipe: Omit<Recipe, 'id'>): Recipe {
+        const newId = this.recipes.length > 0 ? Math.max(...this.recipes.map(recipe => recipe.id)) + 1 : 1;
+        const recipe: Recipe = {
+            id: newId,
+            ...newRecipe
+        };
         this.recipes.push(recipe);
+        return recipe;
     }
 
-    updateRecipe(id: number, updatedRecipe: Recipe): void {
+    updateRecipe(id: number, updatedRecipe: Omit<Recipe, 'id'>): Recipe | undefined {
         const index = this.recipes.findIndex(recipe => recipe.id === id);
         if (index !== -1) {
-            this.recipes[index] = updatedRecipe;
+            this.recipes[index] = {
+                id,
+                ...updatedRecipe
+            };
+            return this.recipes[index];
         }
+        return undefined;
     }
 
-    deleteRecipe(id: number): void {
+    deleteRecipe(id: number): boolean {
         const index = this.recipes.findIndex(recipe => recipe.id === id);
         if (index !== -1) {
             this.recipes.splice(index, 1);
+            return true;
+        } else {
+            return false;
         }
     }
 }
 
 // Create an instance of the RecipeDatabase class
-const recipeDatabase = new RecipeDatabase();
+const recipeDbClient = new RecipeDatabase();
 
-export default recipeDatabase;
+export default recipeDbClient;
