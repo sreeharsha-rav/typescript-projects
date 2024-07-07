@@ -1,7 +1,6 @@
 import { FastifyRequest, FastifyReply } from 'fastify';
 import { recipeService } from '../services/recipeService';
 import { Recipe } from '../models/recipe';
-import { parse } from 'path';
 
 /*
  * Controller for recipes to handle requests and responses
@@ -34,7 +33,7 @@ class RecipeController {
     async getRecipeById(request: FastifyRequest<{ Params: { id: string } }>, reply: FastifyReply) {
         const id = parseInt(request.params.id);
 
-        // Check if ID is a number
+        // Check if ID is a number -> TODO: Move this to a validation middleware
         if (typeof id !== 'number') {
             reply.code(400).send({ error: 'Invalid ID' });
             return;

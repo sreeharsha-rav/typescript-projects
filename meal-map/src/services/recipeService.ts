@@ -1,5 +1,5 @@
 import { Recipe } from '../models/recipe';
-import { recipeRepository } from '../repositories/recipeRepository';
+import { prisma } from '../config/prisma';
 
 /*
  * Service for recipes to handle logic for recipe operations
@@ -25,24 +25,51 @@ class RecipeService {
     /* Logic for handling recipe operations */
 
     async getAllRecipes(): Promise<Recipe[]> {
-        return recipeRepository.findAll();
+        try {
+            return prisma.recipe.findMany();
+        } catch (error) {
+            console.error(error);
+            return [];
+        }
     }
 
     async getRecipeById(id: number): Promise<Recipe | null> {
-        return recipeRepository.findById(id);
+        try {
+            return prisma.recipe.findUnique({ where: { id } });
+        } catch (error) {
+            console.error(error);
+            return null;
+        }
     }
 
-    async createRecipe(recipe: Omit<Recipe, 'id'>): Promise<Recipe> {
-        return recipeRepository.create(recipe);
+    async createRecipe(recipe: Omit<Recipe, 'id' | 'createdAt' | 'updatedAt'>): Promise<Recipe> {
+        try {
+            return prisma.recipe.create({ data: recipe });
+        } catch (error) {
+            console.error(error);
+            throw new Error('Prisma: Failed to create recipe');
+        }
     }
 
-    async updateRecipe(id: number, recipe: Partial<Recipe>): Promise<Recipe | null> {
-        return recipeRepository.update(id, recipe);
+    async updateRecipe(id: number, recipe: Partial<Omit<Recipe, 'id' | 'createdAt' | 'updatedAt'>>): Promise<Recipe | null> {
+        try {
+            return prisma.recipe.update({ where: { id }, data: recipe });
+        } catch (error) {
+            console.error(error);
+            return null;
+        }
     }
 
     async deleteRecipe(id: number): Promise<boolean> {
-        return recipeRepository.delete(id);
+        try {
+            await prisma.recipe.delete({ where: { id } });
+            return true;
+        } catch (error) {
+            console.error(error);
+            return false;
+        }
     }
+
 }
 
 export const recipeService = RecipeService.getInstance();
