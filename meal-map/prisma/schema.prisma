@@ -15,8 +15,3 @@ model Recipe {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
-
-generator client {
-  provider = "prisma-client-js"
-  seed     = "ts-node prisma/seed.ts"
-}

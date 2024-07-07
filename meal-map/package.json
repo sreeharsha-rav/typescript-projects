@@ -7,7 +7,9 @@
     "test": "jest",
     "start": "node build/server.js",
     "build": "tsc -p tsconfig.json",
-    "dev": "nodemon src/server.ts",
+    "dev": "nodemon src/server.ts"
+  },
+  "prisma" : {
     "seed": "ts-node prisma/seed.ts"
   },
   "keywords": [],

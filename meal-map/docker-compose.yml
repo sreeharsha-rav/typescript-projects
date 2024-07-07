@@ -1,15 +1,12 @@
-version: '3'
+version: '3.8'
 services:
-  app:
-    build: .
+  meal-map:
+    image: meal-map
+    ports:
+      - "3000:3000"
     environment:
-      - PORT=3000
-      - DATABASE_URL=postgresql://postgres:postgres@db:5432/mealmapdb
-    depends_on:
-      - db
-  db:
-    image: postgres:alpine
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=mealmapdb
+      PORT: "3000"
+      # 0.0.0.0 to access the server outside the container
+      HOST: "0.0.0.0"   
+      # host.docker.internal to access host machine from docker container for postgres connection
+      DATABASE_URL: "postgresql://postgres:postgres@host.docker.internal:5432/testdb?schema=public"

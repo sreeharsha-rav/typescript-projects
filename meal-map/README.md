@@ -151,14 +151,16 @@ pnpm test
 ### Docker
 
 Build the Docker image:
-```
+```bash
 docker build -t meal-map-api .
 ```
 
-Run the Docker container with required environment variables:
+Configure the environment variables (PORT, HOST, DATABASE_URL) in docker-compose.yml and run the container:
+```bash
+docker-compose up
 ```
-docker run -p 3000:3000 -e PORT=3000 DATABASE_URL=postgres://user:password@host:port/db meal-map-api
-```
+
+Access the API at http://localhost:3000.
 
 ## API Usage Examples
 

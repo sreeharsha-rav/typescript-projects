@@ -11,7 +11,7 @@ RUN pnpm install --frozen-lockfile
 
 COPY . .
 
-RUN ppnpm prisma generate
+RUN pnpm prisma generate
 
 RUN pnpm build
 
