@@ -19,7 +19,7 @@ MealMap allows users to search, filter, and discover a wide variety of recipes. 
 
 ## Technologies
 
-- **Frontend:** TypeScript, HTML, CSS, Bootstrap
+- **Frontend:** Next.js, TypeScript, Tailwind CSS
 - **Backend:** Fastify, TypeScript
 - **Database:** PostgreSQL, MongoDB
 - **ORM:** Prisma, Mongoose

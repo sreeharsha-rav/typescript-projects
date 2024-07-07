@@ -1,15 +1,15 @@
-import { Recipe } from "./types/recipe";
+import { Recipe } from "../models/recipe";
 
 /*
- * Recipe database to store and manage recipes in memory
-    * getAllRecipes - get all recipes
-    * getRecipeById - get a single recipe by ID
-    * addRecipe - add a new recipe
-    * updateRecipe - update an existing recipe
-    * deleteRecipe - delete a recipe by ID
- */
-class RecipeDatabase {
-    private recipes: Recipe[];
+ * Repository for recipes to interact with recipe data
+    * findAll - get all recipes
+    * findById - get a single recipe by ID
+    * create - create a new recipe
+    * update - update a recipe by ID
+    * delete - delete a recipe by ID
+*/
+class RecipeRepository {
+    private recipes: Recipe[] = [];
 
     constructor() {
         this.recipes = [
@@ -46,48 +46,39 @@ class RecipeDatabase {
         ];
     }
 
-    getAllRecipes(): Recipe[] {
+    async findAll(): Promise<Recipe[]> {
         return this.recipes;
     }
 
-    getRecipeById(id: number): Recipe | undefined {
-        return this.recipes.find(recipe => recipe.id === id);
+    async findById(id: number): Promise<Recipe | null> {
+        return this.recipes.find(recipe => recipe.id === id) || null;
     }
 
-    addRecipe(newRecipe: Omit<Recipe, 'id'>): Recipe {
+    async create(recipe: Omit<Recipe, 'id'>): Promise<Recipe> {
         const newId = this.recipes.length > 0 ? Math.max(...this.recipes.map(recipe => recipe.id)) + 1 : 1;
-        const recipe: Recipe = {
+        const newRecipe = {
             id: newId,
-            ...newRecipe
-        };
-        this.recipes.push(recipe);
-        return recipe;
+            name: recipe.name,
+            description: recipe.description,
+            imageURL: recipe.imageURL
+        }
+        this.recipes.push(newRecipe);
+        return newRecipe;
     }
 
-    updateRecipe(id: number, updatedRecipe: Omit<Recipe, 'id'>): Recipe | undefined {
-        const index = this.recipes.findIndex(recipe => recipe.id === id);
-        if (index !== -1) {
-            this.recipes[index] = {
-                id,
-                ...updatedRecipe
-            };
-            return this.recipes[index];
-        }
-        return undefined;
+    async update(id: number, recipe: Partial<Recipe>): Promise<Recipe | null> {
+        const index = this.recipes.findIndex(r => r.id === id);
+        if (index === -1) return null;
+        this.recipes[index] = { ...this.recipes[index], ...recipe };
+        return this.recipes[index];
     }
 
-    deleteRecipe(id: number): boolean {
-        const index = this.recipes.findIndex(recipe => recipe.id === id);
-        if (index !== -1) {
-            this.recipes.splice(index, 1);
-            return true;
-        } else {
-            return false;
-        }
+    async delete(id: number): Promise<boolean> {
+        const index = this.recipes.findIndex(r => r.id === id);
+        if (index === -1) return false;
+        this.recipes.splice(index, 1);
+        return true;
     }
 }
 
-// Create an instance of the RecipeDatabase class
-const recipeDbClient = new RecipeDatabase();
-
-export default recipeDbClient;
+export const recipeRepository = new RecipeRepository();

@@ -45,6 +45,12 @@ v1.0 - final release
 
 ## Phase 3
 
-- add rating and reviews to recipes
-- implement social sharing
-- add user notifications
+- add AI-powered recipe recommendations
+- Implement AI chatbot for recipe suggestions based on user preferences
+- Implement AI chatbot for meal planning suggestions based on user preferences
+- Impelement AI chatbot for dietary suggestions based on user preferences
+- Implement AI chatbot for ingredient suggestions based on user preferences
+
+## Phase 4
+
+- Add a live ingredient update based on real-time inventory
