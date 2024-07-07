@@ -3,7 +3,7 @@ import { recipeRoutes } from './routes/recipeRoutes';
 import { prisma } from './config/prisma';
 
 // Build the app and register the recipe routes
-export function buildApp(): FastifyInstance {
+export async function build(): Promise<FastifyInstance> {
     const app = fastify({
         logger: true,
     });

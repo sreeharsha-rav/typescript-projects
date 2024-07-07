@@ -8,6 +8,7 @@ import { prisma } from '../config/prisma';
     * createRecipe - create a new recipe
     * updateRecipe - update a recipe by ID
     * deleteRecipe - delete a recipe by ID
+    * deleteAll - delete all recipes
 */
 class RecipeService {
     private static instance: RecipeService;  // Singleton instance
@@ -63,6 +64,17 @@ class RecipeService {
     async deleteRecipe(id: number): Promise<boolean> {
         try {
             await prisma.recipe.delete({ where: { id } });
+            return true;
+        } catch (error) {
+            console.error(error);
+            return false;
+        }
+    }
+
+    // !important: deleteAll must not be implemented in the controller
+    async deleteAll(): Promise<boolean> {
+        try {
+            await prisma.recipe.deleteMany();
             return true;
         } catch (error) {
             console.error(error);

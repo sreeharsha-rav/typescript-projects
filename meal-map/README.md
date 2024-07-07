@@ -91,38 +91,71 @@ MealMap allows users to search, filter, and discover a wide variety of recipes. 
 | DELETE | /api/mealplans/:id    | Delete a meal plan     |
 
 
-## Setup and Running
+## Installation
 
-1. Install dependencies:
+### Setup
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/sreeharsha-rav/typescript-projects/tree/main/meal-map
+   cd meal-map
    ```
+
+2. Install the dependencies:
+   ```bash
    pnpm install
    ```
 
-2. Run in development mode:
+3. Add environment variables to a `.env` file:
+   ```bash
+   PORT=3000
+   DATABASE_URL=postgres://user:password@host:port/db
    ```
+
+4. Generate Prisma client:
+   ```bash
+   pnpm prisma generate
+   ```
+
+5. Run database migrations:
+   ```bash
+   pnpm prisma migrate dev
+   ```
+
+6. Seed the database with initial data:
+   ```bash
+   pnpm seed
+   ```
+
+### Runnning the App
+
+1. Start the development server:
+   ```bash
    pnpm dev
    ```
 
-3. Build for production:
-   ```
+2. To build and start the production server:
+   ```bash
    pnpm build
-   ```
-
-4. Run in production mode:
-   ```
    pnpm start
    ```
+### Testing
 
-## Docker
+Run the unit tests:
+```bash
+pnpm test
+```
+
+### Docker
 
 Build the Docker image:
 ```
 docker build -t meal-map-api .
 ```
 
-Run the Docker container:
+Run the Docker container with required environment variables:
 ```
-docker run -p 3000:3000 meal-map-api
+docker run -p 3000:3000 -e PORT=3000 DATABASE_URL=postgres://user:password@host:port/db meal-map-api
 ```
 
 ## API Usage Examples
