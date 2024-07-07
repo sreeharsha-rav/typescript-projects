@@ -5,6 +5,8 @@
 
 MealMap is a recipe discovery app designed to help you find delicious recipes based on your preferences and ingredients.
 
+Current development roadmap [here](./roadmap.md).
+
 ## Description
 
 MealMap allows users to search, filter, and discover a wide variety of recipes. Users can also save their favorite recipes and create a personalized meal plan. The app leverages Fastify for the backend, Prisma as the ORM, and MongoDB for data storage, with TypeScript ensuring robust and maintainable code.
@@ -20,7 +22,7 @@ MealMap allows users to search, filter, and discover a wide variety of recipes. 
 ## Technologies
 
 - **Frontend:** Next.js, TypeScript, Tailwind CSS
-- **Backend:** Fastify, TypeScript
+- **Backend:** Fastify, TypeScript, Jest
 - **Database:** PostgreSQL, MongoDB
 - **ORM:** Prisma, Mongoose
 - **Others:** Node.js, pnpm, Docker, GitHub Actions
