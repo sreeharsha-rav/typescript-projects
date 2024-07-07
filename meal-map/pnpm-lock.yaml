@@ -24,9 +24,6 @@ importers:
         specifier: ^5.16.1
         version: 5.16.1
     devDependencies:
-      '@types/dotenv':
-        specifier: ^8.2.0
-        version: 8.2.0
       '@types/jest':
         specifier: ^29.5.12
         version: 29.5.12
@@ -406,10 +403,6 @@ packages:
 
   '@types/cookiejar@2.1.5':
     resolution: {integrity: sha512-he+DHOWReW0nghN24E1WUqM0efK4kI9oTqDm6XmK8ZPe2djZ90BSNdGnIyCLzCPw7/pogPlGbzI2wHGGmi4O/Q==}
-
-  '@types/dotenv@8.2.0':
-    resolution: {integrity: sha512-ylSC9GhfRH7m1EUXBXofhgx4lUWmFeQDINW5oLuS+gxWdfUeW4zJdeVTYVkexEW+e2VUvlZR2kGnGGipAWR7kw==}
-    deprecated: This is a stub types definition. dotenv provides its own type definitions, so you do not need this installed.
 
   '@types/graceful-fs@4.1.9':
     resolution: {integrity: sha512-olP3sd1qOEe5dXTSaFvQG+02VdRXcdytWLAZsAq1PecU8uqQAhkrnbli7DagjtXKW/Bl7YJbUsa8MPcuc8LHEQ==}
@@ -2198,10 +2191,6 @@ snapshots:
       '@babel/types': 7.24.7
 
   '@types/cookiejar@2.1.5': {}
-
-  '@types/dotenv@8.2.0':
-    dependencies:
-      dotenv: 16.4.5
 
   '@types/graceful-fs@4.1.9':
     dependencies:
