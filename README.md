@@ -12,12 +12,14 @@ This repository contains a collection of personal projects that I have developed
 - [**`Authentation Demo`**](./auth-demo): A simple authentication API that allows users to register, login, and logout. The API uses JWT for authentication and authorization.
 - [**`Photo Caption`**](./photo-caption): A backend for a platform where users can participate in a photo caption contest. The server hosts few images and provides endpoint to authenticate and authorize users, upload images, and submit captions for the images.
 - [**`MealMap`**](./meal-map): A recipe discovery and meal planning application that allows users to search, filter, and discover a wide variety of recipes.
+- [**`Rental Fleet Management`**](./ts-rental-fleet-management): A simple deno typescript project to implement a service management system for a car rental fleet.
 
 ## Technologies
 
 The projects are developed using the following technologies:
 
 - **Typescript**: A superset of JavaScript that adds static types to the language.
+- **Deno**: A modern javascript and typescript runtime.
 - **Node.js**: A JavaScript runtime that allows the execution of JavaScript code outside of a web browser.
 - **Nodemon**: A utility that monitors for any changes in the source code of a Node.js application and automatically restarts the server.
 - **Express.js**: A web application framework for Node.js that provides a set of features for web and mobile applications.
