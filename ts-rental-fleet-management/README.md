@@ -31,6 +31,10 @@ rental_fleet/
 │   │       ├── Battery.ts
 │   │       ├── SpindlerBattery.ts
 │   │       └── NubbinBattery.ts
+│   │   └── tire/
+│   │       ├── Tire.ts
+│   │       ├── CarriganTire.ts
+│   │       └── OctoprimeTire.ts
 │   ├── services/
 │   │   └── CarService.ts
 │   ├── factories/
@@ -54,7 +58,7 @@ rental_fleet/
 
 2. Run the example:
    ```
-   deno run --allow-read src/main.ts
+   deno task start
    ```
 
 This will run the example in `main.ts`, which demonstrates the creation and service checking of different car models.
@@ -67,4 +71,10 @@ This will run the example in `main.ts`, which demonstrates the creation and serv
 
 ## Running Tests
 
-(Add information about running tests when they are implemented)
+```
+deno task test
+```
+
+## Credits
+
+This program was developed as a part of the [Forage - Lyft Backend Engineering Virtual Job Simulation](https://www.theforage.com/simulations/lyft/back-end-engineering-he82).
