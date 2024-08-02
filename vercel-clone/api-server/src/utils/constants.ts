@@ -1,0 +1,1 @@
+export const VALID_GIT_HOSTS = ['github.com', 'gitlab.com', 'bitbucket.org', 'dev.azure.com'];
