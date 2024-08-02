@@ -13,6 +13,7 @@ This repository contains a collection of personal projects that I have developed
 - [**`Photo Caption`**](./photo-caption): A backend for a platform where users can participate in a photo caption contest. The server hosts few images and provides endpoint to authenticate and authorize users, upload images, and submit captions for the images.
 - [**`MealMap`**](./meal-map): A recipe discovery and meal planning application that allows users to search, filter, and discover a wide variety of recipes.
 - [**`Rental Fleet Management`**](./ts-rental-fleet-management): A simple deno typescript project to implement a service management system for a car rental fleet.
+- [**`Vercel Clone`**](./vercel-clone): A simple clone of the Vercel platform that allows users to deploy and host their websites.
 
 ## Technologies
 
