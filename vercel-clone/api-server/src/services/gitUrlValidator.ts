@@ -1,4 +1,4 @@
-import { VALID_GIT_HOSTS } from "../utils/constants.ts";
+const VALID_GIT_HOSTS = ['github.com', 'gitlab.com', 'bitbucket.org', 'dev.azure.com'];
 
 /**
  * Validates a Git URL by checking its format, host, and existence of the repository.
@@ -8,12 +8,12 @@ export class GitUrlValidator {
     private static gitUrlPattern = /^(https?:\/\/)?([\w.@:/\-~]+)(\.git)?\/?$/;
     
     /**
-     * Checks if the given URL is a valid Git URL.
+     * Checks if the given URL is a valid Git URL using simple regex checks.
      * 
      * @param url - The URL to validate.
-     * @returns A promise that resolves to true if the URL is valid, and false otherwise.
+     * @returns A boolean indicating whether the URL is valid.
      */
-    static async isValid(url: string): Promise<boolean> {
+    static isValid(url: string): boolean {
         if (!this.gitUrlPattern.test(url)) {
             return false;
         }
@@ -22,7 +22,7 @@ export class GitUrlValidator {
             return false;
         }
 
-        return await this.repoExists(url);      // this causes backpressure, future performance design change
+        return true;    //return await this.repoExists(url);      // this causes backpressure, future performance design change
     }
 
     /**

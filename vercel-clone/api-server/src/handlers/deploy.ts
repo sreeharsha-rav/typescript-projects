@@ -16,7 +16,7 @@ export async function post(c: Context) {
     }
 
     try {
-        const isValidRepo: boolean = await GitUrlValidator.isValid(repoUrl);
+        const isValidRepo: boolean = GitUrlValidator.isValid(repoUrl);  // A simple regex check
 
         if (!isValidRepo) {
             return c.json({ error: 'Invalid repository URL' }, 400);
