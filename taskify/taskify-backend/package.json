@@ -1,0 +1,28 @@
+{
+  "name": "taskify-backend",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Taskify backend",
+  "license": "MIT",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc && tsc-alias",
+    "start": "node ./dist/src/index.js",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.13.7",
+    "@types/bcrypt": "^5.0.2",
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.7",
+    "hono": "^4.6.16",
+    "mongoose": "^8.9.3",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.12",
+    "tsc-alias": "^1.8.10",
+    "tsx": "^4.19.2",
+    "typecript": "0.0.1-security"
+  }
+}
