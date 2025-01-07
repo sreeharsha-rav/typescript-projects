@@ -1,17 +1,23 @@
+import { Hono } from "hono";
 import type { Context } from "hono";
 import { UserModel } from "@/db/models";
 import bcrypt from "bcrypt";
 import { sign } from "hono/jwt";
 import { JWT_SECRET } from "@/db/config";
+import { schemas } from "@/utils/validation";
+import { AppError } from "@/utils/errors";
 
-// Function to register a new user
-export const register = async (c: Context) => {
-  const { email, name, password } = await c.req.json();
+const app = new Hono();
+
+// Register a new user
+app.post("/register", async (c: Context) => {
+  const body = await c.req.json();
+  const { email, name, password } = schemas.register.parse(body);
 
   // Check if user already exists
   const user = await UserModel.findOne({ email });
   if (user) {
-    return c.json({ error: "Email is already registered" }, 400);
+    throw new AppError(400, "Email already registered");
   }
 
   // Create new user
@@ -22,23 +28,30 @@ export const register = async (c: Context) => {
     password: hashedPassword,
   });
 
-  return c.json({ message: "User registered successfully" }, 201);
-};
+  return c.json(
+    {
+      success: true,
+      message: "User registered successfully",
+    },
+    201
+  );
+});
 
-// Function to login a user
-export const login = async (c: Context) => {
-  const { email, password } = await c.req.json();
+// Login a user
+app.post("/login", async (c: Context) => {
+  const body = await c.req.json();
+  const { email, password } = schemas.login.parse(body);
 
   // Check if user exists
   const user = await UserModel.findOne({ email });
   if (!user) {
-    return c.json({ error: "Email not registered" }, 400);
+    throw new AppError(404, "User not found");
   }
 
   // Verify password
   const isValid = await bcrypt.compare(password, user.password);
   if (!isValid) {
-    return c.json({ error: "Wrong password" }, 401);
+    throw new AppError(401, "Invalid password");
   }
 
   // Generate JWT token
@@ -49,5 +62,13 @@ export const login = async (c: Context) => {
   };
   const token = await sign(payload, JWT_SECRET);
 
-  return c.json({ token }, 200);
-};
+  return c.json(
+    {
+      success: true,
+      data: { token },
+    },
+    200
+  );
+});
+
+export default app;

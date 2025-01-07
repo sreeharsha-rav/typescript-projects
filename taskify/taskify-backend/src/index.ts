@@ -1,17 +1,25 @@
 import { serve } from "@hono/node-server";
 import { Hono } from "hono";
-import userRoutes from "@/routes/user/routes";
-import taskRoutes from "@/routes/tasks/routes";
+import userRoutes from "@/routes/user";
+import taskRoutes from "@/routes/tasks";
 import { connectDB, PORT } from "@/db/config";
+import { errorHandler } from "@/middleware/error";
+import { authenticate } from "@/middleware/auth";
 
 const app = new Hono();
 
-// routes
+// public routes
 app.get("/health", (c) => {
   return c.json({ status: "ok" });
 });
 app.route("api/auth", userRoutes);
+
+// protected routes
+app.use("api/tasks/*", authenticate);
 app.route("api/tasks", taskRoutes);
+
+// error handler
+app.onError(errorHandler);
 
 // start server
 const startServer = async () => {

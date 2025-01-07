@@ -1,24 +1,28 @@
 import type { Context, Next } from "hono";
 import { JWT_SECRET } from "@/db/config";
 import { verify } from "hono/jwt";
+import { AppError } from "@/utils/errors";
 
 // Middleware to check if user is authenticated
 export const authenticate = async (c: Context, next: Next) => {
   const token = c.req.header("Authorization")?.split(" ")[1];
 
   if (!token) {
-    return c.json({ error: "Authorization token is missing" }, 401);
+    throw new AppError(401, "Authentication required");
   }
 
-  // Verify JWT token
-  const payload = await verify(token, JWT_SECRET);
-  if (!payload) {
-    return c.json({ error: "Invalid token" }, 403);
+  try {
+    // Verify JWT token
+    const payload = await verify(token, JWT_SECRET);
+    if (!payload) {
+      throw new AppError(403, "Invalid token");
+    }
+
+    // Set user context
+    c.set("user", { id: payload.id, email: payload.email });
+
+    await next();
+  } catch {
+    throw new AppError(500, "Failed to verify JWT token");
   }
-  console.log("Payload", payload);
-
-  // Set user context
-  c.set("user", { id: payload.id, email: payload.email });
-
-  await next();
 };
